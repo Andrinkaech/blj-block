@@ -1,0 +1,38 @@
+
+#wrapper {
+    width: 50%;
+    margin: 0 auto;
+
+}
+.mitte{
+    text-align: center;
+}
+main {
+
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 2em;
+
+}
+.form-title {
+    text-align: center;
+}
+
+.option-group {
+    text-align: center;
+
+}
+
+.middle {
+    margin-left: center;
+}
+
+
+.error-box {
+    color: red;
+    background-color: rgb(250, 220, 220);
+    border: 1px solid red;
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
