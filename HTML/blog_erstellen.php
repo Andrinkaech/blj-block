@@ -6,6 +6,13 @@ $bild = $_POST['bild'] ?? '';
 $note = $_POST['note'] ?? '';
 $titel = $_POST['titel'] ?? '';
 
+$dbConnection = new PDO('mysql:host=localhost;dbname=wordpress', 'root', '');
+$stmt = $dbConnection->prepare('INSERT INTO blog (Namee, Titel, Textt, Datetimee)
+                                VALUES (:name, :titel, :note, now())');
+
+    $stmt->execute([':name' => $name, ':titel' => $titel, ':note' => $note]);
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = trim($name);
     $note = trim($note);
@@ -21,6 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = 'Bitte geben Sie einen Titel ein.';
     }
 }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -66,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     <div class="form-group">
                         <label class="form-label" for="name">*Titel</label><br>
-                        <input class="form-control" type="text" id="name" name="name" value="<?= $name ?? '' ?>">
+                        <input class="form-control" type="text" id="titel" name="titel" value="<?= $titel ?? '' ?>">
                     </div>
 
                     <div class="form-group">
@@ -86,7 +95,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             </form>
         </div>
+    
     </main>
 </body>
 
 </html>
+
+
