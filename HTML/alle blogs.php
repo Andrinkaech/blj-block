@@ -1,20 +1,13 @@
-<?php 
-$stmt = $pdo->query('SELECT * FROM blog');
-foreach($stmt->fetchAll() as $x) {
-    var_dump($x);
-
-}
-
-
-
-
-
-
-
-
-
-
+<?php
+$pdo = new PDO('mysql:host=localhost;dbname=wordpress', 'root', '');
+$sql = "SELECT Namee, Titel, Textt, Datetimee, Bilder FROM blog";
+// foreach ($pdo->query($sql) as $row) {
+//     echo $row['Namee']." ".$row['Titel']."<br />";
+//     echo "Textt: ".$row['Textt']."<br /><br />";
+//     echo "Datetimee: ".$row['Datetimee']."<br /><br />";
+//  }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,13 +19,42 @@ foreach($stmt->fetchAll() as $x) {
     <link rel="stylesheet" href="../CSS/navigatorstyle.css">
     <title>Document</title>
 </head>
+
 <body>
     <main>
-    <header>
-        <?php include 'navigation.php' ?>
-    </header>
+        <header>
+            <?php include 'navigation.php' ?>
+        </header>
+        <?php
+        foreach ($pdo->query($sql) as $row) : ?>
+            <p class="Titel">
+                <br>
+                <?= $row['Titel']
+                ?>
+            </p>
+            <p class="border">
+                <?= $row['Textt']
+                ?>
+            </p>
+
+            </p>
+            <p>
+            
+            <p class="ueberschrift">
+                <?= $row['Namee']
+                ?>
+            </p>
+            <p>
+                <?= $row['Datetimee']
+                ?>
+            </p>
+                <img src= <?= $row['Bilder']?>>
+                <?php include 'Kommentarfunktion' ?>
 
 
+            
+            <p class="Linie"></p>
+        <?php endforeach ?>
 
     </main>
 </body>

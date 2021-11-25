@@ -1,0 +1,17 @@
+<?php
+$pdo = new PDO('mysql:host=localhost;dbname=wordpress', 'root', '');
+$sql = "SELECT Namee, Titel, Textt, Datetimee, Bilder, Kritik FROM blog";
+?>
+<link rel="stylesheet" href="../CSS/formular.css">
+
+
+<html>
+    <main>
+        <form method="post" action="">
+            <input type="text" placeholder="Kommentar schreiben...">
+            <input type="submit" value="Submit">
+        </form>
+    </main>
+</html>
+
+

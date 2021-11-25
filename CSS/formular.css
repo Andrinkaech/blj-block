@@ -36,3 +36,30 @@ main {
     padding-top: 10px;
     padding-bottom: 10px;
 }
+
+.green-error-box {
+    color: green;
+    background-color: rgb(250, 220, 220);
+    border: 1px solid green;
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.Titel {
+    font-size: 30px;
+
+}
+.border{
+    border: 1px solid gray;
+}
+.Linie
+{
+    border: 2px solid black;
+}
+img{
+    max-width: 500px;
+}
+.ueberschrift{
+    font-size: 20px;
+}

@@ -1,16 +1,12 @@
 <?php
 $errors = [];
 
+
 $name = $_POST['name'] ?? '';
 $bild = $_POST['bild'] ?? '';
 $note = $_POST['note'] ?? '';
 $titel = $_POST['titel'] ?? '';
-
-$dbConnection = new PDO('mysql:host=localhost;dbname=wordpress', 'root', '');
-$stmt = $dbConnection->prepare('INSERT INTO blog (Namee, Titel, Textt, Datetimee)
-                                VALUES (:name, :titel, :note, now())');
-
-    $stmt->execute([':name' => $name, ':titel' => $titel, ':note' => $note]);
+$kritik = $_POST['kritik'] ?? '';
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -27,8 +23,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($titel === '') {
         $errors[] = 'Bitte geben Sie einen Titel ein.';
     }
-}
 
+
+    if(count($errors) === 0){
+
+        $dbConnection = new PDO('mysql:host=localhost;dbname=wordpress', 'root', '');
+        $stmt = $dbConnection->prepare('INSERT INTO blog (Namee, Titel, Textt, Datetimee, Bilder, Kritik)
+                                    VALUES (:name, :titel, :note, now(), :Bild, :kritik,)');
+    
+        $stmt->execute([':name' => $name, ':titel' => $titel, ':note' => $note, ':Bild' => $bild, 'kritik' => $kritik]);
+
+    }
+
+}
 
 ?>
 <!DOCTYPE html>
@@ -59,7 +66,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </ul>
                 </div>
             <?php } ?>
-
 
             <p class="mitte">Hier können sie Ihren eigenen Blog erstellen.</p>
 
@@ -95,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             </form>
         </div>
-    
+
     </main>
 </body>
 
